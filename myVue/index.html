@@ -10,7 +10,24 @@
 <body>
     你好
     <script>
-        console.log(Vue);
+        let vm= new Vue({
+            el:"dom",
+            data(){
+                return {
+                    test:"测试数据",
+                    obj:{
+                        name:"你好",
+                        relations:{
+                            name:"你猜"
+                        }
+                    }
+                }
+            }
+        })
+        
+        vm._data.obj.other={name:'test'}
+        vm._data.test="测试2"
+        console.log(vm._data.obj.other.name);
     </script>
 </body>
 </html>

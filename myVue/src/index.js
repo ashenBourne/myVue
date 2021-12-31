@@ -1,3 +1,7 @@
-export const fn=()=>{
-    console.log("这是es6的写法");
+
+import mixInit from "./init"
+function Vue(options) {
+    this.init(options)
 }
+mixInit(Vue)
+export default Vue

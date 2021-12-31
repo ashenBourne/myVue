@@ -6,6 +6,7 @@ import { lifecycleMixin } from './lifecycle'
 import { warn } from '../util/index'
 
 function Vue (options) {
+  // Vue必须通过new关键字来实例化
   if (process.env.NODE_ENV !== 'production' &&
     !(this instanceof Vue)
   ) {
