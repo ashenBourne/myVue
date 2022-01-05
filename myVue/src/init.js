@@ -1,16 +1,12 @@
-import { observe } from "./observe/index"
+import {initState} from "./state"
 
-
+// 初始化方法
 const mixInit = function (Vue) {
     Vue.prototype.init = function (options) {
         let vm = this
         vm.$options = options
-        initData(vm)
+        initState(vm)
     }
 }
-function initData(vm) {
-    let data = vm.$options.data || {}
-    vm._data = data = typeof data === 'function' ? data.call(vm) : data || {}
-    observe(data)
-}
+
 export default mixInit

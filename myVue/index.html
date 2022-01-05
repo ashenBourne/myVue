@@ -20,14 +20,18 @@
                         relations:{
                             name:"你猜"
                         }
-                    }
+                    },
+                    arr:[1,2]
                 }
             }
         })
         
-        vm._data.obj.other={name:'test'}
-        vm._data.test="测试2"
-        console.log(vm._data.obj.other.name);
+        vm._data.arr.push({
+            desc:"复杂对象"
+        })
+        vm._data.arr[2].desc='修改属性值'
+        console.log(vm._data.arr);
+
     </script>
 </body>
 </html>
