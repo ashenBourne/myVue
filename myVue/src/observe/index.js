@@ -53,7 +53,8 @@ export function observe(data) {
     if (!isObject(data)) {
         return
     }
-    if(data.__ob__){    //如果有这个值，表示监听过了，不用再监听了
+    // 如果有这个值，表示监听过了，不用再监听了
+    if(data.__ob__){    
         return
     }
     return new Observer(data)

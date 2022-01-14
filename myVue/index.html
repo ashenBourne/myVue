@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,31 +8,36 @@
     <title>Document</title>
     <script src="./dist/umd/vue.js"></script>
 </head>
+
 <body>
-    你好
+    <div id="app" class="xxx">
+        人员信息
+        <ul style="color:red;padding:10px">
+            <li>姓名：{{information.name}}</li>
+            <li>年龄：{{information.age}}</li>
+            <li>职位：{{information.job}}</li>
+        </ul>
+    </div>
     <script>
-        let vm= new Vue({
-            el:"dom",
-            data(){
+        let vm = new Vue({
+            el: "#app",
+            data() {
                 return {
-                    test:"测试数据",
-                    obj:{
-                        name:"你好",
-                        relations:{
-                            name:"你猜"
-                        }
-                    },
-                    arr:[1,2]
+                    information: {
+                        job: "前端工程师",
+                        age: 18,
+                        name: "六神啊六神"
+                    }
                 }
-            }
+            },
+            // render(h) {
+            //     return h("div",'这是render渲染的')
+            // }, 
+            // template:"<div class='red'>字体颜色</div>"
+
         })
-        
-        vm._data.arr.push({
-            desc:"复杂对象"
-        })
-        vm._data.arr[2].desc='修改属性值'
-        console.log(vm._data.arr);
 
     </script>
 </body>
+
 </html>

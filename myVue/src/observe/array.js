@@ -3,7 +3,6 @@ import {def} from "../utils/index"
 const arrayProto = Array.prototype
 // 该对象继承了 Array的原型，重写以下七个方法
 export const arrayMethods = Object.create(arrayProto)
-
 // 劫持arrayMethods上面一些方法：改变数组长度/顺序的方法
 let methodsToPatch=[
     'push',
@@ -14,8 +13,7 @@ let methodsToPatch=[
     'sort',
     'reverse'
 ]
-
-// 场景[].push(2,34)
+// 场景：[].push(2,34)
 methodsToPatch.forEach(method=>{
     // 原来的方法
     let original=arrayProto[method]
@@ -23,7 +21,6 @@ methodsToPatch.forEach(method=>{
         // 执行对应的方法,此处的this指处理的对象
         let result=original.apply(this,args)
         let ob= this.__ob__
-        // 统一参数
         let inserted
         // 对于新增的方法来说，如果新增的参数是对象，也需要进行监控
         switch (method){

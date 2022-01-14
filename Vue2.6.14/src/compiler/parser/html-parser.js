@@ -64,11 +64,13 @@ export function parseHTML (html, options) {
     if (!lastTag || !isPlainTextElement(lastTag)) {
       let textEnd = html.indexOf('<')
       if (textEnd === 0) {
-        // Comment:
+        // Comment:找注释的‘<!-- -->>’
         if (comment.test(html)) {
+          // 若为注释则继续查找是否存在'-->'
           const commentEnd = html.indexOf('-->')
 
           if (commentEnd >= 0) {
+            
             if (options.shouldKeepComment) {
               options.comment(html.substring(4, commentEnd), index, index + commentEnd + 3)
             }

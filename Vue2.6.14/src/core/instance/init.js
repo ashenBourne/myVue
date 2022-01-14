@@ -83,7 +83,7 @@ export function initInternalComponent (vm: Component, options: InternalComponent
   opts._parentListeners = vnodeComponentOptions.listeners
   opts._renderChildren = vnodeComponentOptions.children
   opts._componentTag = vnodeComponentOptions.tag
-
+ 
   if (options.render) {
     opts.render = options.render
     opts.staticRenderFns = options.staticRenderFns
