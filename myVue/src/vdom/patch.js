@@ -7,6 +7,7 @@ export function patch(oldVnode,vnode) {
     parentEle.insertBefore(el,oldVnode.nextSibling);
     // 删除老的节点
     parentEle.removeChild(oldVnode)
+    return el
 }
 function createElement(vnode) {
     let {tag,children,key,data={},text}=vnode

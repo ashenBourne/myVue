@@ -35,13 +35,13 @@ export function defineReactive(obj, key, oldVal) {
     observe(oldVal)
     Object.defineProperty(obj, key, {
         get() {
-            console.log("获取该属性值?");
+            // console.log("获取该属性值?");
             return oldVal
         },
         // 设置的时候，如果新值是对象，也要进行监控
         set(newVal) {
             if (newVal === oldVal) return
-            console.log("设置新属性");
+            // console.log("设置新属性");
             observe(newVal)
             oldVal = newVal
         }

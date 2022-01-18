@@ -1,14 +1,19 @@
 import {initState} from "./state"
 import {compileToFunction} from "./compile/index"
 import {mountComponent} from "./lifecycle"
+import {mergeOptions} from "./utils/index"
+import { callHook } from "./lifecycle"
 // 初始化方法
 const initMixin = function (Vue) {
     Vue.prototype.init = function (options) {
         let vm = this
-        
- 
-        vm.$options = options
-        initState(vm)
+        vm.$options = mergeOptions(vm.constructor.options,options)
+        // 这里应该合并Vue.options:为什么用constructor，为了指向实例的构造函数，避免污染
+        // console.log(mergeOptions(vm.constructor.options,options));
+        callHook(vm,'beforeCreate')
+        initState(vm)   //更新状态
+        callHook(vm,'created')
+
         // 如果有el，则自动执行$mount方法
         if(options.el){
             vm.$mount(options.el)
@@ -17,7 +22,7 @@ const initMixin = function (Vue) {
     Vue.prototype.$mount=function(el){
         const vm=this
         el=document.querySelector(el)
-        vm.$el=el
+        // vm.$el=el
         const options=vm.$options
         // debugger
         // 如果没render，则生成render
