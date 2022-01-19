@@ -29,11 +29,6 @@
                 console.log("这是create1")
             },
         })
-        Vue.mixin({
-            created() {
-                console.log("这是create2")
-            },
-        })
         let vm = new Vue({
             el: "#app",
             data() {
@@ -55,11 +50,11 @@
             },
 
         })
-        console.log(vm);
-        vm.information.age=20
         // 每次数据更新直接调用下面方法即可
         // Vue更新策略是以组件为单位，给每个组件都增加一个watcher，属性变化后更新watcher
-        vm._update(vm._render())
+        setTimeout(() => {
+            vm.information.age=20
+        }, 2000);
 
     </script>
 </body>

@@ -1,5 +1,5 @@
 import {patch } from "./vdom/patch"
-
+import Watcher from "./observe/watcher"
 export function  lifecycleMixin(Vue) {
     Vue.prototype._update=function (vnode) {
         let vm=this
@@ -11,7 +11,13 @@ export function  mountComponent(vm,el) {
     // 生成真实的dom，放进el中
     callHook(vm,'beforeMount')  //在挂载之前执行
     // 先调用render方法创建虚拟节点，再将虚拟节点渲染到页面上
-    vm._update(vm._render())
+    let updateComponent=()=>{
+        vm._update(vm._render())
+    }
+    new Watcher(vm,updateComponent,()=>{
+        callHook(vm,'beforeUpdate')
+    },true)
+    
     callHook(vm,'mounted')
 }
 
