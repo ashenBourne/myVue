@@ -1,3 +1,4 @@
+import { nextTick } from "../utils/index"
 export function renderMixin(Vue) {
         // 创建虚拟dom节点
         Vue.prototype._c = function () {
@@ -18,6 +19,11 @@ export function renderMixin(Vue) {
                 const vnode = render.call(vm)
                 return vnode
         }
+        Vue.prototype.$nextTick = function (fn) {
+                return nextTick(fn, this)
+        }
+
+
 }
 // _c('div',{id:'app',style:{padding:'10px'}},child1,child2……)   
 function createElement(tag, data = {}, ...children) {       //data是属性

@@ -13,6 +13,7 @@ let methodsToPatch=[
     'sort',
     'reverse'
 ]
+// 当触发这七个方法，页面应该更新
 // 场景：[].push(2,34)
 methodsToPatch.forEach(method=>{
     // 原来的方法
@@ -35,6 +36,8 @@ methodsToPatch.forEach(method=>{
         }
         // 执行挂载在
         if (inserted) ob.observeArray(inserted)
+        // 通知更新
+        ob.dep.notify()
         return result
     })
 })
